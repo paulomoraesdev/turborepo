@@ -1,18 +1,34 @@
-import { ReactNode } from "react";
+import type { ReactNode, ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  className?: string;
-  appName: string;
+  variant?: "primary" | "secondary" | "danger" | "ghost";
+  size?: "sm" | "md" | "lg";
+  isLoading?: boolean;
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export function Button({
+  children,
+  className = "",
+  variant = "primary",
+  size = "md",
+  isLoading = false,
+  disabled,
+  ...props
+}: ButtonProps) {
+  const baseStyles = "ui-button";
+  const variantStyles = `ui-button--${variant}`;
+  const sizeStyles = `ui-button--${size}`;
+  const loadingStyles = isLoading ? "ui-button--loading" : "";
+
   return (
     <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+      className={`${baseStyles} ${variantStyles} ${sizeStyles} ${loadingStyles} ${className}`.trim()}
+      disabled={disabled || isLoading}
+      {...props}
     >
+      {isLoading ? <span className="ui-button__spinner" /> : null}
       {children}
     </button>
   );
-};
+}

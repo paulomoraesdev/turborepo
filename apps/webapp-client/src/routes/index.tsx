@@ -1,37 +1,65 @@
-import { createFileRoute } from '@tanstack/react-router'
-import '../App.css'
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { Button, Input, Card } from "@turborepo/ui";
+import { saveToken } from "@turborepo/auth";
+import { login } from "../lib/api";
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute("/")({
+  component: LoginPage,
+});
 
-function App() {
+function LoginPage() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const response = await login(email);
+      saveToken(response.token);
+      navigate({ to: "/dashboard" });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Login failed");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src="/tanstack-circle-logo.png"
-          className="App-logo"
-          alt="TanStack Logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="ui-page">
+      <div className="login-container">
+        <Card
+          title="Client Portal"
+          subtitle="Login to view your work orders"
+          variant="elevated"
         >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
+          <form onSubmit={handleSubmit} className="ui-stack ui-stack--gap-md">
+            <Input
+              label="Email"
+              type="email"
+              placeholder="user@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={error}
+              required
+            />
+            <Button type="submit" variant="primary" isLoading={isLoading}>
+              Login
+            </Button>
+          </form>
+          <p
+            className="ui-text ui-text--secondary ui-text--sm"
+            style={{ marginTop: "1rem" }}
+          >
+            Enter your email to access your assigned work orders
+          </p>
+        </Card>
+      </div>
     </div>
-  )
+  );
 }

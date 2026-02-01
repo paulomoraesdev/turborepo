@@ -1,11 +1,14 @@
 {
   "name": "turborepo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Turborepo POC - Work Orders Management System",
   "main": "index.js",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:client": "turbo run dev --filter=webapp-client --filter=api-auth --filter=api-orders",
+    "dev:admin": "turbo run dev --filter=webapp-admin --filter=api-auth --filter=api-orders",
+    "dev:backend": "turbo run dev --filter=api-auth --filter=api-orders --filter=api-analytics",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

@@ -1,0 +1,39 @@
+{
+  "name": "@turborepo/auth",
+  "version": "1.0.0",
+  "description": "Authentication SDK for Turborepo POC frontends",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@turborepo/dtos": "workspace:*"
+  },
+  "devDependencies": {
+    "@turborepo/eslint-config": "workspace:*",
+    "@turborepo/typescript-config": "workspace:*",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "turborepo",
+    "auth",
+    "sdk",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.22.0"
+}

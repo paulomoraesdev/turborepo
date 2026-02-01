@@ -1,14 +1,91 @@
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* Login Page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.login-container .ui-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ui-color-text);
+}
+
+.stat-value--info {
+  color: var(--ui-color-info);
+}
+
+.stat-value--warning {
+  color: var(--ui-color-warning);
+}
+
+.stat-value--success {
+  color: var(--ui-color-success);
+}
+
+.stat-value--muted {
+  color: var(--ui-color-text-muted);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--ui-color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* Recent Orders */
+.recent-order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--ui-color-border);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.recent-order-item:last-child {
+  border-bottom: none;
+}
+
+.recent-order-item:hover {
+  background-color: var(--ui-color-bg-secondary);
+  margin: 0 -1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }

@@ -4,6 +4,7 @@
 Este projeto é uma Proof of Concept (PoC) para demonstrar a viabilidade de uma arquitetura Monorepo usando **Turborepo** (pnpm).
 O objetivo é simular um ecossistema com múltiplos microserviços (NestJS) e múltiplos frontends (TanStack Start) compartilhando código, tipos e lógica de autenticação.
 O foco é a demonstração do turborepo, então lembre-se de usar seus recursos para a implementação.
+A TIPAGEM É OBRIGATÓRIA. O SUO DE DTO, ENTIDADES, TIPAGEM É MANDATÓRIA E INEGOCIÁVEL. NUNCA USE TIPOS GENÉRICOS OU any.
 
 ## 2. Tech Stack & Ferramentas
 - **Monorepo Manager:** Turborepo.
